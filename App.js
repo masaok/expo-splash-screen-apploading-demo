@@ -7,24 +7,37 @@ import { Ionicons } from '@expo/vector-icons';
 
 import AppNavigator from './navigation/AppNavigator';
 
-export default function App(props) {
-  const [isLoadingComplete, setLoadingComplete] = useState(false);
+// export default function App(props) {
+export default class App extends React.Component {
 
-  if (!isLoadingComplete && !props.skipLoadingScreen) {
-    return (
-      <AppLoading
-        startAsync={loadResourcesAsync}
-        onError={handleLoadingError}
-        onFinish={() => handleFinishLoading(setLoadingComplete)}
-      />
-    );
-  } else {
-    return (
-      <View style={styles.container}>
-        {Platform.OS === 'ios' && <StatusBar barStyle="default" />}
-        <AppNavigator />
-      </View>
-    );
+  state = {
+    isSplashReady: false,
+    isAppReady: false,
+    isLoadingComplete: false,
+  };
+
+  render() {
+    // const [isLoadingComplete, setLoadingComplete] = useState(false);
+    const { isLoadingComplete } = this.state
+
+    if (!isLoadingComplete && !this.props.skipLoadingScreen) {
+      return (
+        <AppLoading
+          startAsync={loadResourcesAsync}
+          onError={handleLoadingError}
+          onFinish={() => this.setState({
+            isLoadingComplete: true
+          })}
+        />
+      );
+    } else {
+      return (
+        <View style={styles.container}>
+          {Platform.OS === 'ios' && <StatusBar barStyle="default" />}
+          <AppNavigator />
+        </View>
+      );
+    }
   }
 }
 
@@ -50,8 +63,10 @@ function handleLoadingError(error: Error) {
   console.warn(error);
 }
 
-function handleFinishLoading(setLoadingComplete) {
-  setLoadingComplete(true);
+function handleFinishLoading() {
+  this.setState({
+    isLoadingComplete: true
+  })
 }
 
 const styles = StyleSheet.create({
