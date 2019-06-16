@@ -1,1 +1,2 @@
-https://docs.expo.io/versions/latest/sdk/splash-screen/
+- https://docs.expo.io/versions/latest/sdk/splash-screen/
+- https://docs.expo.io/versions/latest/sdk/app-loading/
