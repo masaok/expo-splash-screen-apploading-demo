@@ -2,7 +2,7 @@ import { AppLoading, SplashScreen } from 'expo';
 import { Asset } from 'expo-asset';
 import * as Font from 'expo-font';
 import React, { useState } from 'react';
-import { Image, Text, Platform, StatusBar, StyleSheet, View } from 'react-native';
+import { Dimensions, Image, Text, Platform, StatusBar, StyleSheet, View } from 'react-native';
 import { Ionicons } from '@expo/vector-icons';
 
 import AppNavigator from './navigation/AppNavigator';
@@ -23,6 +23,7 @@ export default class App extends React.Component {
   render() {
     // const [isLoadingComplete, setLoadingComplete] = useState(false);
     const { isLoadingComplete } = this.state
+    const { width, height } = Dimensions.get('window'); // required to make splash image fit screen
 
     // https://docs.expo.io/versions/latest/sdk/splash-screen/#example-with-apploading
     if (!this.state.isSplashReady) {
@@ -44,6 +45,7 @@ export default class App extends React.Component {
           <Image
             source={require('./assets/images/splash-frog.png')}
             onLoad={this._cacheResourcesAsync}
+            style={{ height: height, width: width }}
           />
         </View>
       );
