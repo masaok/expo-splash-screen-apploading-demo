@@ -15,6 +15,12 @@
     "splash": {
       "image": "./assets/images/splash-frog.png",
       "resizeMode": "contain",
+      "ldpi": "./assets/images/splash-frog.png",
+      "mdpi": "./assets/images/splash-frog.png",
+      "hdpi": "./assets/images/splash-frog.png",
+      "xhdpi": "./assets/images/splash-frog.png",
+      "xxhdpi": "./assets/images/splash-frog.png",
+      "xxxhdpi": "./assets/images/splash-frog.png",
       "backgroundColor": "#ffffff"
     },
     "updates": {
