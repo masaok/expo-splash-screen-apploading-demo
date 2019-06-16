@@ -42,7 +42,7 @@ export default class App extends React.Component {
       return (
         <View style={{ flex: 1 }}>
           <Image
-            source={require('./assets/images/splash-custom.png')}
+            source={require('./assets/images/splash-frog.png')}
             onLoad={this._cacheResourcesAsync}
           />
         </View>
@@ -62,7 +62,7 @@ export default class App extends React.Component {
   _cacheSplashResourcesAsync = async () => {
     // async function _cacheSplashResourcesAsync() {
     console.log("APP > CACHE SPLASH RESOURCE ...")
-    const gif = require('./assets/images/splash-custom.png');
+    const gif = require('./assets/images/splash-frog.png');
     return Asset.fromModule(gif).downloadAsync()
   }
 
@@ -87,6 +87,9 @@ export default class App extends React.Component {
         // remove this if you are not using it in your app
         'space-mono': require('./assets/fonts/SpaceMono-Regular.ttf'),
       }),
+      new Promise((resolve, reject) => {
+        setTimeout(() => resolve({ foo: 'bar' }), 3000) // fake delay on splash screen
+      })
     ])
     this.setState({ isAppReady: true });
   }
